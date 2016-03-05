@@ -6,14 +6,15 @@ test(t => {
 })
 
 test.cb(t => {
-    let url = 'https://gist.github.com/sohje/73a80333911026a1be25'
-    gistr(url, (err, data) => {
-        if (data)  {
+    let url = 'https://gist.github.com/rhiokim/d4b2a3fa327df4266f1c'
+    gistr(url).then(data => {
+        if (data) {
             t.ok(data);
             t.notThrows(data);
         }
+    }).catch(err => {
         // Github API rate limiting for travis servers...
         if (err) t.ifError(err);
         t.end();
-    })
+    });
 })
